@@ -33,6 +33,8 @@ License
 
 MIT licensed
 
-Copyright (C) 2014 Jaume Sanchez Elias http://twitter.com/thespite - Table picture by https://twitter.com/blurspline
+Copyright (C) 2014 Jaume Sanchez Elias http://twitter.com/thespite
+
+Table picture by https://twitter.com/blurspline
 
 http://www.clicktorelease.com
