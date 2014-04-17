@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Depth data extractor</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			*{
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				color: #ffffff;
+				font-family: 'roboto condensed', tahoma;
+				font-size:13px;
+				text-align: left;
+				font-weight: 100;
+				background-color: #111;
+				margin: 0px;
+				overflow: hidden;
+			}
+			a{ color: #b70000;}
+			.rs-base{ display: none;}
+			#uploadFile{ }
+			#img{ position: absolute; left: 10px; top: 110px; bottom: 10px; height: 80%; }
+			.title{ position: absolute; left: 10px; top :10px ;}
+			#log{ position: absolute; width: 600px; top: 10px; right: 10px; bottom: 10px; overflow: scroll; color: #eee; word-wrap:break-word; display :none;}
+		</style>
+		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+		<script src="LensBlurDepthExtractor.js" ></script>
+	</head>
+	<body>
+
+	<div class="title">
+		<h1>Depth data extractor</h1>
+		<p>Upload a file captured with the new Android Lens Blur application, and get the depth data back.</p>
+		<input type="file" id="uploadFile" name="uploadFile" />
+	</div>
+		<img id="img" />
+
+<script>
+
+'use strict';
+
+var img = document.getElementById( 'img' );
+var d = new DepthReader();
+
+window.addEventListener( 'load', init );
+
+function init() {
+
+	function setImg( src ) {
+		img.src = src;
+	}
+
+	function onError( msg ) {
+		alert( msg );
+	}
+
+	function handleFileSelect(evt) {
+
+		var files = evt.target.files;
+
+		for (var i = 0, f; f = files[i]; i++) {
+
+			if (!f.type.match('image.*')) {
+				continue;
+			}
+
+			var reader = new FileReader();
+
+			reader.onload = function(theFile) {
+
+				d.parseFile( reader.result, setImg, onError );
+
+			}
+
+			reader.readAsArrayBuffer( f );
+
+		}
+
+	}
+
+	document.getElementById( 'uploadFile' ).addEventListener( 'change', handleFileSelect, false);
+
+	d.loadFile( 'table.jpg', setImg, onError );
+}
+
+
+</script>
+		
+	</body>
+</html>
