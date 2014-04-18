@@ -23,9 +23,11 @@
 			a{ color: #b70000;}
 			.rs-base{ display: none;}
 			#uploadFile{ }
-			#img{ position: absolute; left: 10px; top: 110px; bottom: 10px; height: 80%; }
+			#imgDepth{ float: left; margin-right: 10px; }
+			#imgColor{ float: left }
 			.title{ position: absolute; left: 10px; top :10px ;}
 			#log{ position: absolute; width: 600px; top: 10px; right: 10px; bottom: 10px; overflow: scroll; color: #eee; word-wrap:break-word; display :none;}
+			#pictures{ position: absolute; left: 0; top: 90px; right: 0; bottom: 0; padding: 10px;}
 		</style>
 		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		<script src="LensBlurDepthExtractor.js" ></script>
@@ -37,23 +39,28 @@
 		<p>Upload a file captured with the new Android Lens Blur application, and get the depth data back.</p>
 		<input type="file" id="uploadFile" name="uploadFile" />
 	</div>
-		<img id="img" />
+	<div id="pictures">
+		<img id="imgDepth" />
+		<img id="imgColor" />
+	</div>
 
-		<a href="https://github.com/spite/android-lens-blur-depth-extractor"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+	<a href="https://github.com/spite/android-lens-blur-depth-extractor"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 
 <script>
 
 'use strict';
 
-var img = document.getElementById( 'img' );
+var imgDepth = document.getElementById( 'imgDepth' );
+var imgColor = document.getElementById( 'imgColor' );
 var d = new DepthReader();
 
 window.addEventListener( 'load', init );
 
 function init() {
 
-	function setImg( src ) {
-		img.src = src;
+	function setImg() {
+		imgColor.src = 'data:' + d.image.mime + ';base64,' + d.image.data;
+		imgDepth.src = 'data:' + d.depth.mime + ';base64,' + d.depth.data;
 	}
 
 	function onError( msg ) {
@@ -84,8 +91,15 @@ function init() {
 
 	}
 
+	function onResize() {
+		imgColor.height = window.innerHeight * .8;
+		imgDepth.height = window.innerHeight * .8;
+	}		
+	
 	document.getElementById( 'uploadFile' ).addEventListener( 'change', handleFileSelect, false);
+	window.addEventListener( 'resize', onResize );
 
+	onResize();
 	d.loadFile( 'table.jpg', setImg, onError );
 }
 
