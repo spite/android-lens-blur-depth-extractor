@@ -1,0 +1,19 @@
+{
+  "name": "android-lens-blur-depth-extractor",
+  "version": "0.0.0",
+  "description": "Parser for Android camera lens blur depth maps",
+  "main": "LensBlurDepthExtractor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/spite/android-lens-blur-depth-extractor.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spite/android-lens-blur-depth-extractor/issues"
+  },
+  "homepage": "https://github.com/spite/android-lens-blur-depth-extractor"
+}
