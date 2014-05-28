@@ -124,6 +124,10 @@
 
 	};
 
-	window.DepthReader = DepthReader;
+	if (typeof exports === 'object') {
+		module.exports = DepthReader;
+	} else {
+		window.DepthReader = DepthReader;
+	}
 
 } )();
