@@ -98,6 +98,8 @@
 			this.depth.mime   = matchAttribute( 'GDepth:Mime', str );
 			this.depth.data   = matchAttribute( 'GDepth:Data', str );
 
+			this.arrayBuffer = arrayBuffer;
+			
 			if( this.depth.data === null ) {
 				if( onError ) onError( 'No depth data found' );
 				return;
