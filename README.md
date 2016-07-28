@@ -3,7 +3,9 @@ LensBlurDepthExtractor.js
 
 This library parses images created with the new Android camera app mode Lens Blur and extracts the depth map.
 
-Demo is here: http://clicktorelease.com/tools/lens-blur-depth-extractor
+Extractor tool is here: https://clicktorelease.com/tools/lens-blur-depth-extractor
+
+Demo is here: https://www.clicktorelease.com/code/depth-player/
 
 How to use
 ----------
@@ -33,7 +35,7 @@ License
 
 MIT licensed
 
-Copyright (C) 2014 Jaume Sanchez Elias http://twitter.com/thespite
+Copyright (C) 2016 Jaume Sanchez Elias http://twitter.com/thespite
 
 Table picture by https://twitter.com/blurspline
 
