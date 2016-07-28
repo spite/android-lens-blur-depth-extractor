@@ -7,6 +7,8 @@ Extractor tool is here: https://clicktorelease.com/tools/lens-blur-depth-extract
 
 Demo is here: https://www.clicktorelease.com/code/depth-player/
 
+![Snapshot](snapshot.jpg)
+
 How to use
 ----------
 
