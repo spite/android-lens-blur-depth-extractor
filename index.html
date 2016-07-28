@@ -59,7 +59,13 @@ window.addEventListener( 'load', init );
 function init() {
 
 	function setImg() {
-		imgColor.src = 'data:' + d.image.mime + ';base64,' + d.image.data;
+		if( d.image.data ) {
+			imgColor.src = 'data:' + d.image.mime + ';base64,' + d.image.data;
+		} else {
+			var arrayBufferView = new Uint8Array( d.arrayBuffer );
+			var blob = new Blob( [ d.arrayBuffer ] );
+			imgColor.src = URL.createObjectURL( blob );
+		}
 		imgDepth.src = 'data:' + d.depth.mime + ';base64,' + d.depth.data;
 	}
 
